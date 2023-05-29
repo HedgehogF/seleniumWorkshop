@@ -94,3 +94,49 @@
    ```
    This selects elements where the attribute starts with "value" followed by any characters.
 
+
+## Exceptions
+
+1. **NoSuchElementException**: This exception is raised when an element cannot be found on the page.
+    
+2. **TimeoutException**: This exception is raised when a command exceeds the maximum time allowed for execution.
+    Code which causes the TimeoutException :
+```
+    WebDriverWait wait = new WebDriverWait(driver, 30);
+    WebElement idElement;
+    idElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("123")));
+```
+
+3. **StaleElementReferenceException**: This exception is raised when a referenced element is no longer attached to the DOM.
+4. **ElementNotVisibleException**: This exception is raised when an element is present in the DOM but not visible to the user.
+    Code which causes the ElementNotVisibleException :
+```
+    <input type='button' hidden=true value='save'>
+    
+    // click the button which is hidden (not visible)
+    driver.find_element_by_xpath("//input[@type='button']")).click();
+```
+5. **ElementNotInteractableException**: This exception is raised when an element is present in the DOM but not interactable, such as being disabled.
+
+    Code which causes the InvalidElementStateException :
+    ```
+    <input type='button' disabled=true value='save'>
+    
+    // click the button which is disabled
+    driver.find_element_by_xpath("//input[@type='button']")).click();
+    ```
+6. **NoSuchFrameException**: This exception is raised when a frame or iframe cannot be found.
+    Code which causes the NoSuchFrameException :
+    ```
+    driver.switch_to_frame("frame1");
+    ```
+7. **NoSuchWindowException**: This exception is raised when a window or tab cannot be found.
+   Code which causes the NoSuchWindowException :
+    ```
+    driver.switch_to_window("window Gu ID")
+    ```
+8. **InvalidSelectorException**: This exception is raised when an invalid selector is used in a WebDriver command.
+9. **UnexpectedAlertPresentException**: This exception is raised when an unexpected alert is present on the page.
+10. **WebDriverException**: This is a general exception that serves as the base class for all other Selenium exceptions.
+
+Notes: All exceptions supported in python. [Doc](https://www.selenium.dev/selenium/docs/api/py/common/selenium.common.exceptions.html#module-selenium.common.exceptions)
